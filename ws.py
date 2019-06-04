@@ -19,17 +19,6 @@ async def hello(websocket, path):
     clients[websocket] = queue
     try:
         while True:
-            # attend pour une message
-            try:
-                message = await asyncio.wait_for(websocket.recv(), timeout=0.1)
-                json_data = json.loads(message)
-                if 'method' in json_data and 'data' in json_data:
-                    if json_data['method'] in resolver:
-                        print('find resolver')
-                        await resolver[json_data['method']](
-                            websocket, json_data['data'])
-            except asyncio.TimeoutError:
-                pass
             # regarde pour un message a envoyer
             try:
                 data = queue.get(timeout=0.3)

@@ -1,4 +1,5 @@
 import asyncio
+import rpc
 import ws
 import json
 import downloading_thread
@@ -20,17 +21,15 @@ class YDLTImpl(downloading_thread.YoutubeDlDowloadingThread):
 download = YDLTImpl()
 
 
-async def addQueue(client, data):
+def addQueue(data):
     download.AddItemQueue(data)
-    await client.send("proute que croute")
+    return "OK"
 
 
-async def getQueue(client, data):
-    print('SENDING QUEUE')
-    await client.send(json.dumps(download.public_queue))
+def getQueue():
+    return download.public_queue
 
 
 if __name__ == "__main__":
-    ws.resolver['add'] = addQueue
-    ws.resolver['getQueue'] = getQueue
+    rpc.run_simple('localhost', 4000, rpc.application)
     ws.run()
