@@ -19,7 +19,7 @@ dep: ensure-pip
 	pipenv install --dev
 	pipenv sync
 
-all: clean dep build
+all: clean dep release
 
 test: dep
 	@echo "Running test"
@@ -33,4 +33,3 @@ clean:
 release:
 	mkdir -p ./release
 	tar --transform 's,.*/,,g' -cvf ./release/$(RELEASE) dist/$(PROJECT_NAME) ./config.json
-
