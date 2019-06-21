@@ -1,35 +1,18 @@
-import asyncio
+import sys
 import rpc
 import ws
-import json
-import downloading_thread
 
-
-class YDLTImpl(downloading_thread.YoutubeDlDowloadingThread):
-
-    def __init__(self):
-        super().__init__()
-
-    def progressHook(self, data):
-        dic = {
-            "event": "progress",
-            "data": data
-        }
-        ws.broadcast(dic)
-
-
-download = YDLTImpl()
-
-
-def addQueue(data):
-    download.AddItemQueue(data)
-    return "OK"
-
-
-def getQueue():
-    return download.public_queue
+from settings import Settings
 
 
 if __name__ == "__main__":
-    rpc.run_simple('localhost', 4000, rpc.application)
-    ws.run()
+    config = 'config.json'
+    # Args 1 should be the config file if not use the default config.json
+    if len(sys.argv) > 1:
+        config = str(sys.argv[1])
+        print('Config file override by ', config)
+
+    settings = Settings.fromFile(config)
+
+    rpc.run_simple(settings.rpc['url'], settings.rpc['port'], rpc.application)
+    ws.run(settings.ws['url'], settings.ws['port'])

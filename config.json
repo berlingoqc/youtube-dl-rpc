@@ -1,0 +1,10 @@
+{
+  "ws": {
+    "url": "localhost",
+    "port": 3000
+  },
+  "rpc": {
+    "url": "localhost",
+    "port": 3001
+  }
+}

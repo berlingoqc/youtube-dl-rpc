@@ -4,7 +4,9 @@ import websockets
 import json
 
 from queue import Queue
+
 clients = {}
+
 resolver = {}
 
 
@@ -34,7 +36,7 @@ async def hello(websocket, path):
         print('GENERIC ERROR ', ex)
 
 
-def run():
-    start_server = websockets.serve(hello, 'localhost', 3000)
+def run(host, port):
+    start_server = websockets.serve(hello, host, port)
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()

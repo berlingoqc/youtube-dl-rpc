@@ -3,13 +3,15 @@ from werkzeug.serving import run_simple
 
 from jsonrpc import JSONRPCResponseManager, dispatcher
 
-from main import addQueue, getQueue
+from downloading_thread import download
 
 
 @Request.application
 def application(request):
-    dispatcher["ydl.getQueue"] = getQueue
-    dispatcher["ydl.addQueue"] = addQueue
+    dispatcher["ydl.getQueue"] = download.GetQueue
+    dispatcher["ydl.addQueue"] = download.AddItemQueue
+    dispatcher["ydl.setSettings"] = download.SetSettings
+    dispatcher["ydl.getSettings"] = download.GetSettings
 
     response = JSONRPCResponseManager.handle(
         request.data, dispatcher)
