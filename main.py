@@ -1,8 +1,6 @@
 import sys
-import rpc
-import ws
 
-from settings import Settings
+from ydlrpc import rpc, ws, Settings
 
 
 if __name__ == "__main__":

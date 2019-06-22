@@ -9,6 +9,7 @@ endif
 
 RELEASE := $(PROJECT_NAME)_$(VERSION)_$(detected_OS).tar.gz
 
+.PHONY: test dep 
 
 ensure-pip:
 	pip install --user --upgrade pipenv pip
@@ -21,14 +22,14 @@ dep: ensure-pip
 
 all: clean dep release
 
-test: dep
-	@echo "Running test"
+test:
+	@cd ./test && pipenv run python -m unittest
 
 build:
 	@pipenv run pyinstaller --onefile ./main.py -n $(PROJECT_NAME)
 
 clean:
-	@rm -rf ./build ./dist ./__pycache__
+	@rm -rf ./build ./dist ./__pycache__ ./release
 
 release:
 	mkdir -p ./release

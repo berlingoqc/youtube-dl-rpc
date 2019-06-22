@@ -1,7 +1,9 @@
 from queue import Queue
 from threading import Thread
 import youtube_dl
-import ws
+
+
+from ydlrpc import ws
 
 
 class MyLogger(object):

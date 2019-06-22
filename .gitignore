@@ -2,3 +2,4 @@ __pycache__/
 build/
 dist/
 release/
+youtube-dl-rpc.spec

@@ -3,7 +3,7 @@ from werkzeug.serving import run_simple
 
 from jsonrpc import JSONRPCResponseManager, dispatcher
 
-from downloading_thread import download
+from ydlrpc.downloading_thread import download
 
 
 @Request.application
