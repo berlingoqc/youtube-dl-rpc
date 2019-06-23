@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['src/main.py'],
-             pathex=['/home/wq/Project/DM/youtube-dl-rpc'],
+a = Analysis(['main.py'],
+             pathex=['/home/wq/Project/dm/youtube-dl-rpc'],
              binaries=[],
              datas=[],
              hiddenimports=[],
