@@ -34,3 +34,8 @@ clean:
 release:
 	mkdir -p ./release
 	tar --transform 's,.*/,,g' -cvf ./release/$(RELEASE) dist/$(PROJECT_NAME) ./config.json
+
+install:
+	mkdir -p /etc/ydl-rpc
+	cp config.json /etc/ydl-rpc/config.json
+	cp dist/youtube-dl-rpc /usr/bin/

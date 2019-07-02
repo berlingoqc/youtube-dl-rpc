@@ -2,6 +2,7 @@ import sys
 
 from ydlrpc import rpc, ws, Settings
 
+from threading import Thread
 
 if __name__ == "__main__":
     config = 'config.json'
@@ -12,5 +13,7 @@ if __name__ == "__main__":
 
     settings = Settings.fromFile(config)
 
+    # Thread(target=(lambda: ws.run(
+    #    settings.ws['url'], settings.ws['port']))).start()
     rpc.run_simple(settings.rpc['url'], settings.rpc['port'], rpc.application)
-    ws.run(settings.ws['url'], settings.ws['port'])
+    #ws.run(settings.ws['url'], settings.ws['port'])
