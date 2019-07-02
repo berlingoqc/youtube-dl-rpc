@@ -1,4 +1,4 @@
 {
   "python.linting.pylintEnabled": true,
-  "python.pythonPath": "/home/wq/.local/share/virtualenvs/youtube-dl-rpc-32P-gSA_/bin/python"
+  "python.pythonPath": "/bin/python"
 }
